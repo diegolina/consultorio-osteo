@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Contect-Type" content="text/html" ; charset="UTF-8">
+    <title>Consultorio Kinesico Osteopatico Saavedra </title>
+
+    <!-- Importacion de jQuery -->
+    <script src="js/libs/jquery-3.4.1.min.js"></script>
+
+    <!-- Importacion de Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Importacion del DatePicker -->
+    <script src="js/libs/bootstrap-datepicker.min.js"></script>
+    <link href="css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Importacion del CSS de todo -->
+    <link rel="stylesheet" href="css/turnos.css">
+
+    <!-- Sweet Alert -->
+    <script src="js/libs/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-11">
+                <h1 id="titPrincipal"><img id="imgTur" src="img/turnos.jpg"></img>Gestion de Turnos</h1>
+            </div>
+            <div class="col-sm-1">
+                <h6> <a href="index.html">Volver</a></h6>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <button style="margin-left: 10px;" id="btnBuscar" type="button" class="btn btn-primary btn-sm">Buscar </button>
+
+            <button style="margin-left: 540px;" id="btnDar" type="button" class="btn btn-primary btn-sm">Dar Turno </button>
+            <button style="margin-left: 10px;" id="btnLiberar" type="button" class="btn btn-danger btn-sm">Liberar Turno </button>
+            <button style="margin-left: 10px;" id="btnOcupar" type="button" class="btn btn-primary btn-sm">Ocupar Turno </button>
+            <button style="margin-left: 10px;" id="btnConcurrencia" type="button" class="btn btn-success btn-sm">Marcar Asistencia </button>
+
+        </div>
+
+        <div id="divTurnos">
+
+            <table id="tablaTurnos" class="table table-hover">
+                <theader>
+                    <tr id="recordHead">
+                        <td id="txtCheck"> </td>
+                        <td id="txtFecha">Fecha</td>
+                        <td id="txtHora">Hora</td>
+                        <td id="txtPaciente">Nombre y Apellido</td>
+                        <td id="txtObra">Obra Social</td>
+                        <td id="txtPlan">Plan</td>
+                        <td id="txtTelef">Telefono</td>
+                        <td id="txtEstado">Estado Turno</td>
+                        <td id="txtEstado">Asistencia</td>
+                    </tr>
+                </theader>
+
+                <tbody id="tblRegistros">
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+
+    <!-- Formulario Modal Buscar Agenda -->
+    <div class="modal" id="myModalAgenda">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Buscar Turnos</h4>
+                </div>
+
+                <form id="formBuscar">
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+                        <label class="text-danger" for="fecha">*Fecha</label>
+                        <div style="width: 120px;" class="input-group date fj-date">
+                            <input id="fecha_desde" name="fecha" type="text" class="form-control"> <span class="input-group-addon"> <i class = "glyphicon glyphicon-th" > </i> </span>
+                        </div>
+                        <label class="text-danger" for="usr">*Especialidad</label>
+                        <div>
+
+                            <select id="seleccion" name="especialidad">
+               <option value="kine">Kinesiologia</option> 
+               <option value="osteo">Osteopatia</option>
+               <option value="rpg">RPG</option>
+             </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="modalBuscarAgenda" type="submit" class="btn btn-primary" data-dismiss="modal">Buscar</button>
+                        <button id="modalCerrarAgenda" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Formulario Modal Ingresar Turno -->
+    <div class="modal" id="myModalDarTurno">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 id="tituloTurnos" class="modal-title">Ingreso de Turno</h4>
+                </div>
+
+                <form id="formIngreso">
+
+                    <!-- Campos ocultos para poner el ID y si existe o no el paciente-->
+                    <input type="hidden" id="idAg" name="idAg">
+                    <input type="hidden" id="idPac" name="idPac">
+                    <input type="hidden" id="idPacAccion" name="idPacAccion">
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label class="text-danger" for="usr">*Nombre y Apellido</label>
+                        <input type="text" class="form-control" id="pacienteTurno" name="pacienteBus">
+
+                        <div class="row">
+                            <button style="margin-top: 5px;margin-left: 20px" id="btnBusqPac" type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Buscar Paciente</button>
+                            <button style="margin-top: 5px;margin-left: 150px" id="btnIngPac" type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Ingresar Paciente</button>
+                        </div>
+
+                        <!-- Parte del modal con la lista de pacientes en busqueda-->
+                        <div style="margin-top:5px;" id="listaPac">
+                            <table id="tablaPacientes" class="table table-hover">
+                                <theader>
+                                    <tr id="recordHeadS">
+                                        <td style="width:5px;font-weight: bold;text-align: center;" id="txtCheckPac"></td>
+                                        <td style="width:20px;font-weight: bold;text-align: center;" id="txtNombrePac">Nombre y Apellido</td>
+                                    </tr>
+                                </theader>
+
+                                <tbody id="tblRegPac">
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <!-- Parte del modal con campos para dar de alta paciente-->
+                        <div style="margin-top:5px;" id="ingresoPac">
+
+                            <div class="modal-body">
+                                <label class="text-danger" for="usr">*Nombre y Apellido</label>
+                                <input type="text" class="form-control" id="pacienteIn" name="paciente">
+                                <label class="text-danger" for="usr">Obra Social:</label>
+                                <input type="text" class="form-control" id="obraSocial" name="obra">
+                                <label class="text-danger" for="usr">Plan</label>
+                                <input type="text" class="form-control" id="plan" size="20" name="plan">
+                                <label class="text-danger" for="usr">Telefono</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono">
+                                <label for="usr">Observaciones</label>
+                                <input type="text" class="form-control" id="observac" name="observac">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="btnIngresarTurno" type="button" class="btn btn-primary" data-dismiss="modal">Ingresar</button>
+                        <button id="btnCerrarDar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Formulario Modal Asistencia -->
+    <div class="modal" id="myModalAsistencia">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Marcar Asistencia</h4>
+                </div>
+
+                <form id="formAsistencia">
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <input type="hidden" id="idAgAsis" name="idAgAsis">
+                        <label class="text-danger" for="fecha">*Tipo de Asistencia</label>
+
+                        <table id="tablaAsistencia" class="table table-hover">
+
+                            <tr>
+                                <td style='width:5px;' class='text-center'><input type='checkbox' id='checkA' data-valor='concurrio' value='no' data-idena='concurrio'></td>
+                                <td style='width:20px;' class='text-center'>Concurrio</td>
+                            </tr>
+                            <tr>
+                                <td style='width:5px;' class='text-center'><input type='checkbox' id='checkA' data-valor='au_aviso' value='no' data-idena='au_aviso'></td>
+                                <td style='width:20px;' class='text-center'>Ausente con Aviso</td>
+                            </tr>
+                            <tr>
+                                <td style='width:5px;' class='text-center'><input type='checkbox' id='checkA' data-valor='au_sinaviso' value='no' data-idena='au_sinaviso'></td>
+                                <td style='width:20px;' class='text-center'>Ausente sin Aviso</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="modalMarcarAsis" type="button" class="btn btn-primary" data-dismiss="modal">Marcar</button>
+                        <button id="modalCerrarAsis" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script src="js/turnos.js"></script>

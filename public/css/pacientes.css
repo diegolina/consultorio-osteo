@@ -1,0 +1,115 @@
+#btnEliminar {
+    margin-left: 5px;
+}
+
+#imgPac {
+    width: 50px;
+    height: 50px;
+}
+
+#divTabla {
+    margin-top: 10px;
+}
+
+#tablaTrat {
+    margin-top: 10px;
+}
+
+#txtId {
+    width: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtNombre {
+    width: 100px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtObra {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtAfil {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtPlan {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtTel {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtEditar {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtAnteced {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtTratam {
+    width: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtCheck {
+    width: 3px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtFecha {
+    width: 3px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtTitulo {
+    width: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtCheckSesion {
+    width: 3px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtFechaSesion {
+    width: 3px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#txtTituloSesion {
+    width: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+#registro {
+    text-align: center;
+    font-size: 14px;
+}

@@ -1,0 +1,62 @@
+#tablaTurnos{
+	text-align: center;
+	margin-top: 5px;
+}
+
+#recordHead{
+	font-weight: bold;
+}
+#btnBuscar{
+ margin-left: 10px;
+}
+
+#btnDar{
+ margin-left: 200px;
+}
+#btnLiberar{
+ margin-left: 10px;
+}
+#btnOcupar{
+ margin-left: 10px;
+}
+
+#fecha_desde{
+ margin-left: 10px;
+}
+
+#btnBusqPac{
+ margin-top: 5px;
+}
+
+#pacienteTurno{
+ margin-bottom: 5px;
+}
+
+#recordHeadS{
+	font-weight: bold;
+	text-align: center;
+}
+
+#myModalDarTurno {
+  position: absolute;
+  top: 1px;
+  right: 100px;
+  bottom: 0;
+  left: 0;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+#txtCheckPac{
+	width:5px;
+	font-weight:bold;
+	text-align: center;
+}
+
+#txtNombrePac{
+	width:5px;
+	font-weight:bold;
+	text-align: center;
+}
+
