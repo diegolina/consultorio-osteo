@@ -20,6 +20,7 @@
             };
 
             seteaEntorno();
+            var entorno = $("#entorno").val();
 
             correo = $("#correo").val();
 
@@ -75,6 +76,7 @@
             };
 
             seteaEntorno();
+            var entorno = $("#entorno").val();
 
             let nuevaPass = $("#nuevaPass").val();
 
@@ -125,6 +127,9 @@
             var datosSerializados = "email=" + $("#correo").val() + "&" + "respuesta1=" + $("#respuesta1").val() + "&" + "respuesta2=" + $("#respuesta2").val() + "&" + "respuesta3=" + $("#respuesta3").val();
 
             console.log('DATOS SERIALIZADOS: ' + datosSerializados);
+
+
+            var entorno = $("#entorno").val();
 
             fetch(entorno + "/usuario/respuestas/" + datosSerializados)
                 .then(response => response.text())
