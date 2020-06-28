@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Contect-Type" content="text/html" ; charset="UTF-8">
+    <title>Generación de Agendas </title>
+
+    <!-- Importacion de jQuery -->
+    <script src="js/libs/jquery-3.4.1.min.js"></script>
+
+    <!-- Importacion de Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Importacion del CSS de todo -->
+    <link rel="stylesheet" href="css/pacientes.css">
+
+    <!-- Sweet Alert -->
+    <script src="js/libs/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+
+    <!-- Importacion del DatePicker -->
+    <script src="js/libs/bootstrap-datepicker.min.js"></script>
+    <link href="css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Importacion de Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/all.css">
+    <!--load all styles -->
+
+    <script defer src="js/libs/all.js"></script>
+    <!--load all styles -->
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-11">
+                <h1><img id="imgPac" src="img/agendas.jpg"></img> Generación de Agendas </h1>
+            </div>
+            <div class="col-sm-1">
+                <h6> <a href="main.html">Volver</a></h6>
+            </div>
+
+        </div>
+        <hr>
+
+    </div>
+
+    <div class="container">
+
+
+        <div class="row">
+
+            <div class="col-sm-3">
+
+                <label class="text-danger" for="fecha">*Fecha</label>
+                <div style="width: 120px;" class="input-group date fj-date">
+                    <input id="fecha_desde" name="fecha" type="text" class="form-control"> <span class="input-group-addon"> <i class = "glyphicon glyphicon-th" > </i> </span>
+                </div>
+
+            </div>
+
+            <div class="col-sm-3">
+                <label class="text-danger" for="usr">*Especialidad</label>
+                <div>
+
+                    <select id="seleccion" name="especialidad">
+                          <option value="kine">Kinesiologia</option> 
+                          <option value="osteo">Osteopatia</option>
+                          <option value="rpg">RPG</option>
+                      </select>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-3">
+                <button id="btnBuscar" type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Buscar Horarios</button>
+            </div>
+
+            <div class="col-sm-3">
+                <button id="btnGenerar" type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Generar Agenda</button>
+            </div>
+
+        </div>
+
+        <hr>
+        <br>
+
+        <div class="row">
+
+            <div class="col-sm-3">
+
+                <table id="tablaAgendas1" class="table table-hover">
+                    <theader>
+                        <tr id="recordHeadAgenda1">
+                            <td id="txtCheck"> </td>
+                            <td id="txtHora">Horario</td>
+                        </tr>
+                    </theader>
+
+                    <tbody id="tblRegistrosAgenda">
+
+                    </tbody>
+            </div>
+
+
+
+
+        </div>
+
+</body>
+
+</html>
+
+<script src="js/agenda.js"></script>

@@ -8,6 +8,6 @@ app.use(require('./paciente'));
 app.use(require('./turno'));
 app.use(require('./tratamiento'));
 app.use(require('./sesion'));
-
+app.use(require('./horario'));
 
 module.exports = app;
