@@ -2,7 +2,7 @@
     "name": "consultorio",
     "version": "1.0.0",
     "description": "",
-    "main": "login.js",
+    "main": "index.js",
     "dependencies": {
         "@types/underscore": "^1.10.0",
         "bcrypt": "^4.0.1",

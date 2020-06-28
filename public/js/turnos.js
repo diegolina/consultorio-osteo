@@ -67,6 +67,12 @@
             .then(json => {
                 console.log(json);
 
+                if (json.cantidad === 0) {
+                    Swal.fire('No existe Agenda para la fecha y especialidad seleccionada');
+                    return false;
+                };
+
+
                 for (i = 0; i < json.turnos.length; i++) {
 
                     var content = "";

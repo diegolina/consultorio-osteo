@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Contect-Type" content="text/html" ; charset="UTF-8">
-    <title>Consultorio Kinesico Osteopatico Saavedra </title>
+    <title>Consultorio Kinesico Osteopatico Saavedra Login </title>
 
     <!-- Importacion de jQuery -->
     <script src="js/libs/jquery-3.4.1.min.js"></script>
@@ -11,56 +11,91 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Importacion de css index -->
     <link rel="stylesheet" href="css/index.css">
+    <!-- Sweet Alert -->
+    <script src="js/libs/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <!-- Importacion de Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/all.css">
+    <!--load all styles -->
+    <script defer src="js/libs/all.js"></script>
+    <!--load all styles -->
 
 </head>
 
+
 <body>
 
-    <div class="container">
-
-        <h1>Centro Kinesiko Oesteopatico Saavedra</h1>
-        <hr>
-
+    <main role="main" class="container my-auto">
         <div class="row">
+            <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
+                    col-12">
+                <h2 class="text-center">Consultorio Kinesico Osteopatico Saavedra</h2>
+                <img class="img-fluid mx-auto d-block rounded" src="./img/fotokine.jpg" />
 
-            <div class="col-sm-4">
-                <img id="imgKine" src="img/fotokine.jpg">
+                <form>
+                    <div class="form-group">
+                        <label for="correo">Correo</label>
+                        <input id="correo" name="correo" class="form-control" type="email" placeholder="Correo electrónico">
+                    </div>
+                    <div class="form-group">
+                        <label for="palabraSecreta">Password</label>
+                        <input id="palabraSecreta" name="palabraSecreta" class="form-control" type="password" placeholder="Contraseña">
+                    </div>
+                    <div class="form-group">
+                        <label for="entorno">Entorno</label>
+                        <input id="entorno" name="entorno" class="form-control" placeholder="http://localhost:3000">
+                    </div>
+
+
+                    <button id="btnEntrar" type="button" class="btn btn-primary mb-2">
+                            Entrar
+                        </button>
+                    <br>
+                    <a id="cambioPass" href="#">Cambiar Contraseña</a>
+                </form>
             </div>
-
-            <div class="col-sm-5">
-                <p id="institucional">
-                    Centro Kinesiko Oesteopático Saavedra, la mejor calidad en atencion por profesionales de primera línea reconocidos internacionalmente.
-                </p>
-
-            </div>
-
-            <div class="col-sm-3">
-                <ul id="opciones" class="nav flex-column">
-                    <!-- 
-				<a href="enlacepagina.html">Pacientes</a>
-				<a href="turnos.html">Turnos</a>
-				<a href="enlacepagina.html">Historia Clinica</a>-->
-
-                </ul>
-            </div>
-
         </div>
+    </main>
 
 
-        <hr>
+    <!-- Formulario Modal Cambio de contrasenia -->
+    <div class="modal" id="myModalPass">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-        <p id="turnos">Próximos turnos - Fecha de Atención:</h4>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cambiar Contraseña</h4>
+                </div>
 
-            <table id="tablaProxTurnos" class="table table-bordered">
-                <tr>
-                    <td>Carlos Rodriguez - Kinesiologia - 9:00 Hs</td>
-                    <td>Diego Linares - RPG - 10:00 Hs </td>
-                    <td>Francisco Perez Fauve - Osteo - 11:00Hs</td>
-                    <td>Ernesto Gonzalez - Osteo - 12:00Hs</td>
+                <form id="formPreguntas">
 
-                </tr>
-            </table>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label id="lblPreg1" for="usr">Pregunta 1</label>
+                        <input type="text" class="form-control" id="respuesta1" name="respuesta1">
+                        <label id="lblPreg2" for="usr">Pregunta 2</label>
+                        <input type="text" class="form-control" id="respuesta2" size="20" name="respuesta2">
+                        <label id="lblPreg3" for="usr">Pregunta 3</label>
+                        <input type="text" class="form-control" id="respuesta3" size="20" name="respuesta3">
 
+                        <label id="lblPass" for="usr">Ingrese Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="nuevaPass" size="20" name="nuevaPass">
+                        <input type="hidden" class="form-control" id="idUsuario" size="20" name="idUsuario">
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="btnVolver" type="button" class="btn btn-primary" data-dismiss="modal">Volver</button>
+                        <button id="btnValidar" type="button" class="btn btn-primary" data-dismiss="modal">Validar Respuestas</button>
+                        <button id="btnPass" type="button" class="btn btn-primary" data-dismiss="modal">Registrar Nueva Password</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
     </div>
 
 
