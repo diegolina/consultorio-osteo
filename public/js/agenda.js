@@ -1,39 +1,130 @@
 (function() {
 
-    /*
-        $("body").on("click", "#checkB", function(e) {
+    function formatearFecha(fecha) {
+        var array_fecha = fecha.split("/");
+        //return array_fecha[2] + "-" + array_fecha[1] + "-" + array_fecha[0];
+        return array_fecha[0] + "-" + array_fecha[1] + "-" + array_fecha[2];
+    };
 
-            //si le da check al box rescata el id y saca check al resto
-            if ($(this).is(':checked')) {
+    var horarios = [];
 
-                var horario = $(this).data("idens");
+    $("body").on("click", "#checkB", function(e) {
 
-                console.log(horario);
+        //si le da check al box rescata el id y saca check al resto
+        if ($(this).is(':checked')) {
 
-               // $('input[id="checkB"]').not(this).prop('checked', false);
+            var horario = $(this).data("idens");
 
+            horarios.push(horario);
 
-        });
-    */
+        } else {
+            console.log("DesChequeado");
 
-    $("#btnGenerar").on("click", function() {
+            var horarioD = $(this).data("idens");
 
-        $("#registro td").each(function() {
+            var pos = horarios.indexOf(horarioD)
 
-            //    if ($('input[id="checkB"]').prop('checked') === true) {
+            horarios.splice(pos, 1);
 
-            console.log($('input[id="checkB"]').prop('checked'));
-
-            console.log($(this).text());
-
-
-            //  }
-
-        });
-
+        };
 
     });
 
+
+    function verificaTurnos(my_callback) {
+
+        var fecha = $("#fecha_desde").val();
+        fecha = formatearFecha(fecha);
+
+        var seleccion = $("#seleccion option:selected").val();
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        myHeaders.append("token", localStorage.getItem("token"));
+
+        var entorno = localStorage.getItem("entorno");
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(entorno + '/horario/validar/tipo=' + seleccion + '&fecha=' + fecha, requestOptions)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+
+                retorno = json.turnos.length;
+                my_callback(retorno);
+
+            });
+
+    }
+
+
+
+
+    $("#btnGenerar").on("click", function() {
+
+        verificaTurnos(function(resp) {
+
+            console.log("CANTIDAD: " + resp);
+
+            if (resp !== 0) {
+                Swal.fire('Ya existe agenda de turnos para la fecha y especialidad', '', 'error ');
+                return;
+
+            } else {
+
+                //RECORRE ARRAY/////////////////////////////
+                horarios.forEach(function(elemento) {
+
+                    var myHeaders = new Headers();
+                    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+                    myHeaders.append("token", localStorage.getItem("token"));
+
+                    var entorno = localStorage.getItem("entorno");
+
+                    // Can also constructor from another URLSearchParams
+                    var urlencoded = new URLSearchParams();
+
+                    var fecha = $("#fecha_desde").val();
+
+                    var seleccion = $("#seleccion option:selected").val();
+
+
+                    console.log(fecha);
+                    console.log(seleccion);
+                    console.log(elemento);
+
+
+                    urlencoded.append("hora", elemento);
+                    urlencoded.append("tipo", seleccion);
+                    urlencoded.append("fecha", formatearFecha(fecha));
+
+
+                    var requestOptions = {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: urlencoded,
+                        redirect: 'follow'
+                    };
+
+                    fetch(entorno + '/horario/agenda', requestOptions)
+                        .then(function(res) {})
+                        .catch(function(res) { console.log(res) })
+
+                    Swal.fire('Agenda de turnos generada correctamente', '', 'success ');
+                    $("#tblRegistrosAgenda").empty();
+
+
+                });
+            };
+
+        });
+
+    });
 
 
     //BUSQUEDA DE HORARIOS
