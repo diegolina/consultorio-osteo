@@ -183,6 +183,11 @@
 
 
         ocultaTratam();
+
+        //limpia entrada de datos de sesion
+        $("#fecha_sesion").val("");
+        $("#datoSesion").val("");
+
         $("#idAccion").val("Sesion");
         $("#datosSesion").show();
         $("#btnGrabarTrat").hide();
@@ -190,14 +195,13 @@
 
         $("#btnMenos").show();
         $('#btnMenos').attr("disabled", true);
+
         $("#btnMas").show();
         $('#btnMas').attr("enabled", true);
 
         if ($("#idEstado").val() === 'false') {
             $("#btnIngSesionTrat").show();
             $("#btnDelSesionTrat").show();
-
-
         };
 
         var id = $("#idTratam").val(); //obtiene id del tratam
@@ -206,6 +210,8 @@
         $("#sesionDesde").val("0");
 
         cargaSesiones(id, $("#sesionDesde").val());
+
+
 
     });
 
